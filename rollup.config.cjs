@@ -28,5 +28,6 @@ module.exports = {
       tsconfig: './tsconfig.json',
       exclude: ['node_modules/**']
     })
-  ]
+  ],
+  external: ['xlsx']
 };

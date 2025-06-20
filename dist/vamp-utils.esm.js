@@ -1,3 +1,79 @@
+import XLSX from 'xlsx';
+
+/**
+ * 处理 Excel 文件导入
+ * @param evt 文件导入事件对象
+ * @param fieldMapping 字段映射表 (中文字段 -> 英文字段)
+ * @param callback 导入完成回调函数
+ */
+const handleImport = (evt, fieldMapping, callback) => {
+    const [file] = evt.target.files;
+    if (!file)
+        return;
+    const reader = new FileReader();
+    reader.onload = (loadEvent) => {
+        if (!loadEvent.target)
+            return;
+        try {
+            const data = loadEvent.target.result;
+            const workBook = XLSX.read(data, { type: 'buffer' });
+            const [sheetName] = workBook.SheetNames;
+            if (!sheetName)
+                return;
+            const sheet = workBook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, {
+                header: 0,
+            });
+            // 转换字段名
+            const translatedData = jsonData.map((row) => {
+                const newRow = {};
+                for (const key in row) {
+                    if (fieldMapping[key]) {
+                        newRow[fieldMapping[key]] = row[key];
+                    }
+                }
+                return newRow;
+            });
+            callback(translatedData);
+            // 清空文件输入
+            const fileInput = evt.target;
+            fileInput.value = '';
+        }
+        catch (error) {
+            console.error('Excel导入错误:', error);
+            throw new Error('Excel文件处理失败');
+        }
+    };
+    reader.onerror = () => {
+        throw new Error('文件读取失败');
+    };
+    reader.readAsArrayBuffer(file);
+};
+/**
+ * 导出数据到 Excel 文件
+ * @param config 导出配置
+ */
+const exportToExcel = (config) => {
+    try {
+        const { data, chineseHeader, fieldMapping, fileName } = config;
+        // 准备 Excel 数据
+        const excelData = data.map((row) => {
+            return fieldMapping.map((field) => { var _a; return (_a = row[field]) !== null && _a !== void 0 ? _a : ''; });
+        });
+        // 添加中文表头
+        excelData.unshift(chineseHeader);
+        // 创建工作表并导出
+        const ws = XLSX.utils.aoa_to_sheet(excelData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        XLSX.writeFile(wb, `${fileName}.xlsx`);
+    }
+    catch (error) {
+        console.error('Excel导出错误:', error);
+        throw new Error('Excel导出失败');
+    }
+};
+
 /**
  * 生成随机整数
  * @param min 最小值
@@ -50,4 +126,4 @@ function debounce(fn, delay = 300) {
     };
 }
 
-export { debounce, deepClone, formatMoney, randomInt };
+export { debounce, deepClone, exportToExcel, formatMoney, handleImport, randomInt };

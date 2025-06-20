@@ -25,3 +25,5 @@ export declare function deepClone<T>(obj: T): T;
  * @returns 防抖函数
  */
 export declare function debounce(fn: (...args: any[]) => void, delay?: number): (this: any, ...args: any[]) => void;
+export * from './utils/types';
+export * from "./utils/excel-utils";

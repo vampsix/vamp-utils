@@ -55,3 +55,6 @@ export function debounce(fn: (...args: any[]) => void, delay = 300) {
     timer = setTimeout(() => fn.apply(this, args), delay);
   };
 }
+
+export * from './utils/types';
+export * from "./utils/excel-utils"
