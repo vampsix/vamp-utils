@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
+   "build": "rollup -c rollup.config.cjs",
     "prepublish": "npm run build",
     "test": "jest -c jest.config.cjs",
     "test:watch": "jest --watch"
@@ -16,6 +16,12 @@
   "files": [
     "dist"
   ],
+   "exports": {
+    ".": {
+      "import": "./dist/vamp-utils.esm.js",
+      "require": "./dist/vamp-utils.cjs.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vampsix/vamp-utils.git"

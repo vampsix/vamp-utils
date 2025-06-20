@@ -15,7 +15,21 @@ export function randomInt(min: number, max: number): number {
  * @returns 格式化后的字符串
  */
 export function formatMoney(amount: number, symbol = '¥'): string {
-  return `${symbol}${amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+  // 处理无效数值
+  if (isNaN(amount) || !isFinite(amount)) {
+    return `${symbol}0.00`;
+  }
+  
+  // 处理负数
+  const isNegative = amount < 0;
+  const absoluteValue = Math.abs(amount);
+  
+  // 格式化为两位小数
+  const parts = absoluteValue.toFixed(2).split('.');
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const decimalPart = parts[1];
+  
+  return `${isNegative ? '-' : ''}${symbol}${integerPart}.${decimalPart}`;
 }
 
 /**
