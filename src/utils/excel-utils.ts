@@ -1,4 +1,5 @@
 import XLSX from 'xlsx';
+// import * as XLSX from 'xlsx';
 import { ExcelData, ExportConfig, FieldMapping, ImportParams } from './types';
 
 /**

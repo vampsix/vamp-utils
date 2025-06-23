@@ -1,6 +1,6 @@
 {
   "name": "vamp-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "tools-utils",
   "main": "dist/vamp-utils.cjs.js",
   "module": "dist/vamp-utils.esm.js",

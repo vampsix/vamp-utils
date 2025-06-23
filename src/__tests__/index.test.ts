@@ -35,3 +35,22 @@ describe('vamp-utils', () => {
     }, 200);
   });
 });
+
+import { exportToExcel } from '../utils/excel-utils';
+
+const testData = [
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 30 }
+];
+
+try {
+  exportToExcel({
+    data: testData,
+    chineseHeader: ['姓名', '年龄'],
+    fieldMapping: ['name', 'age'],
+    fileName: 'test-export'
+  });
+  console.log('Export successful!');
+} catch (error) {
+  console.error('Export failed:', error);
+}
