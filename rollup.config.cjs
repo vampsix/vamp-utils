@@ -30,6 +30,7 @@ module.exports = {
     commonjs(),
     typescript({
       tsconfig: "./tsconfig.json",
+      sourceMap: true, // 启用 TypeScript sourcemap
       exclude: ["node_modules/**"],
     }),
   ],

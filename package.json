@@ -1,6 +1,6 @@
 {
   "name": "vamp-utils",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "tools-utils",
   "main": "dist/vamp-utils.cjs.js",
   "module": "dist/vamp-utils.esm.js",
@@ -51,6 +51,9 @@
     "ts-jest": "^29.4.0",
     "tslib": "^2.8.1",
     "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "xlsx": "^0.18.5"
   },
   "dependencies": {
     "xlsx": "^0.18.5"
