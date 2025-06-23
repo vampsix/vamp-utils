@@ -4,6 +4,26 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vampUtils = {}, global.XLSX));
 })(this, (function (exports, XLSX) { 'use strict';
 
+    function _interopNamespaceDefault(e) {
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () { return e[k]; }
+                    });
+                }
+            });
+        }
+        n.default = e;
+        return Object.freeze(n);
+    }
+
+    var XLSX__namespace = /*#__PURE__*/_interopNamespaceDefault(XLSX);
+
+    // import XLSX from 'xlsx';
     /**
      * 处理 Excel 文件导入
      * @param evt 文件导入事件对象
@@ -20,12 +40,12 @@
                 return;
             try {
                 const data = loadEvent.target.result;
-                const workBook = XLSX.read(data, { type: 'buffer' });
+                const workBook = XLSX__namespace.read(data, { type: 'buffer' });
                 const [sheetName] = workBook.SheetNames;
                 if (!sheetName)
                     return;
                 const sheet = workBook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(sheet, {
+                const jsonData = XLSX__namespace.utils.sheet_to_json(sheet, {
                     header: 0,
                 });
                 // 转换字段名
@@ -66,11 +86,12 @@
             });
             // 添加中文表头
             excelData.unshift(chineseHeader);
+            console.log(XLSX__namespace, 'xlsx');
             // 创建工作表并导出
-            const ws = XLSX.utils.aoa_to_sheet(excelData);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-            XLSX.writeFile(wb, `${fileName}.xlsx`);
+            const ws = XLSX__namespace.utils.aoa_to_sheet(excelData);
+            const wb = XLSX__namespace.utils.book_new();
+            XLSX__namespace.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX__namespace.writeFile(wb, `${fileName}.xlsx`);
         }
         catch (error) {
             console.error('Excel导出错误:', error);

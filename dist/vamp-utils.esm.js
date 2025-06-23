@@ -1,5 +1,6 @@
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 
+// import XLSX from 'xlsx';
 /**
  * 处理 Excel 文件导入
  * @param evt 文件导入事件对象
@@ -62,6 +63,7 @@ const exportToExcel = (config) => {
         });
         // 添加中文表头
         excelData.unshift(chineseHeader);
+        console.log(XLSX, 'xlsx');
         // 创建工作表并导出
         const ws = XLSX.utils.aoa_to_sheet(excelData);
         const wb = XLSX.utils.book_new();
