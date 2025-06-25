@@ -19,3 +19,5 @@ export interface ExportConfig {
     fieldMapping: string[];
     fileName: string;
 }
+export type TranslateFunction = (val: string) => string;
+export type EmptyObject = Record<string, string>;

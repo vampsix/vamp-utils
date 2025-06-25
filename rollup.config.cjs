@@ -21,7 +21,8 @@ module.exports = {
       name: "vampUtils",
       sourcemap: true, // 添加 sourcemap
       globals: {
-        xlsx: "XLSX", // 明确指定 xlsx 的全局变量名
+        xlsx: "XLSX", // 明确指定 xlsx 的全局变量名,
+        // dayjs: "dayjs"
       },
     },
   ],
@@ -31,8 +32,9 @@ module.exports = {
     typescript({
       tsconfig: "./tsconfig.json",
       sourceMap: true, // 启用 TypeScript sourcemap
-      exclude: ["node_modules/**"],
+      exclude: ["node_modules/**",'**/*.test.ts', '**/*.spec.ts', 'test/**/*'],
     }),
   ],
-  external: ["xlsx"],
+  // 外部依赖
+  external: ["xlsx","dayjs","axios","dayjs","jszip","axios"],
 };

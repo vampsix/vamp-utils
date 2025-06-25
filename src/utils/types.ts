@@ -30,7 +30,12 @@ export interface ExportConfig {
 }
 
 // 布尔工具函数类型
-export declare function parseBoolean(value: any): boolean;
-export declare function and(array?: (boolean | undefined)[]): boolean;
-export declare function or(array?: (boolean | undefined)[]): boolean;
+// export declare function parseBoolean(value: any): boolean;
+// export declare function and(array?: (boolean | undefined)[]): boolean;
+// export declare function or(array?: (boolean | undefined)[]): boolean;
 
+
+
+// i18n
+export type TranslateFunction = (val: string) => string;
+export type EmptyObject = Record<string, string>;  // 使用 Record 定义键值对类型

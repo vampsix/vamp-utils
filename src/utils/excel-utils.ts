@@ -1,5 +1,5 @@
-// import XLSX from 'xlsx';
-import * as XLSX from 'xlsx';
+import XLSX from 'xlsx';
+// import * as XLSX from 'xlsx';
 import { ExcelData, ExportConfig, FieldMapping, ImportParams } from './types';
 
 /**
@@ -78,7 +78,7 @@ export const exportToExcel = (config: ExportConfig): void => {
 
     // 添加中文表头
     excelData.unshift(chineseHeader);
-    console.log(XLSX,'xlsx');
+    // console.log(XLSX,'xlsx');
     
 
     // 创建工作表并导出

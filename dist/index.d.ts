@@ -27,3 +27,7 @@ export declare function deepClone<T>(obj: T): T;
 export declare function debounce(fn: (...args: any[]) => void, delay?: number): (this: any, ...args: any[]) => void;
 export * from './utils/types';
 export * from "./utils/excel-utils";
+export * from './utils/boolean-utils';
+export * from './utils/date-utils';
+export * from './utils/files-utils';
+export * from './utils/string-utils';

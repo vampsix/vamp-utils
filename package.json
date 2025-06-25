@@ -1,6 +1,6 @@
 {
   "name": "vamp-utils",
-  "version": "1.0.7",
+  "version": "1.0.11",
   "description": "tools-utils",
   "main": "dist/vamp-utils.cjs.js",
   "module": "dist/vamp-utils.esm.js",
@@ -29,6 +29,17 @@
     "url": "git+https://github.com/vampsix/vamp-utils.git"
   },
   "keywords": [
+    "download",
+    "file",
+    "zip",
+    "blob",
+    "axios",
+    "boolean",
+    "dayjs",
+    "date",
+    "time",
+    "utility",
+    "format",
     "xlsx",
     "utils",
     "tools",
@@ -55,9 +66,15 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
+    "axios": ">=0.21.1",
+    "dayjs": ">=1.10.7",
+    "jszip": "^3.10.1",
     "xlsx": "^0.18.5"
   },
   "dependencies": {
+    "axios": "^1.10.0",
+    "dayjs": ">=1.10.7",
+    "jszip": "^3.10.1",
     "xlsx": "^0.18.5"
   }
 }
